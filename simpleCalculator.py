@@ -41,7 +41,10 @@ class Calculator(tk.Tk):
 
     def calculate(self):
         current = self.entry.get()
-        self.total.set(eval(current))
+        try:
+            self.total.set(ast.literal_eval(current))
+        except (ValueError, SyntaxError):
+            self.total.set(("Error"))
 
 if __name__ == "__main__":
     calculator = Calculator()
