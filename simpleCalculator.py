@@ -1,72 +1,48 @@
-from tkinter import *
+import tkinter as tk
 
-expression = ""
+class Calculator(tk.Tk):
+    def __init__(self):
+        super().__init__
 
-def press(num):
-    
-    global expression
+        self.title("Calculator")
 
-    # Concatenates string for view
-    expression = expression + str(num)
+        self.total = tk.StringVar()
 
-    equation.set(expression)
+        self.entry = tk.Entry(self, textvariable=self.total)
+        self.entry.grid(row=0, column=0, columnspan=4, padx=10, pady=10, ipadx=10, ipady=10)
 
-def equalpress():
-    # Try and except use for division by zero
+        self.create_button("1", 1, 1)
+        self.create_button("2", 1, 2)
+        self.create_button("3", 1, 3)
 
-    try:
-        global expression
+        self.create_button("1", 2, 1)
+        self.create_button("2", 2, 2)
+        self.create_button("3", 2, 3)
 
-        # eval function evaluates experession
+        self.create_button("1", 3, 1)
+        self.create_button("2", 3, 2)
+        self.create_button("3", 3, 3)
 
+        self.create_button("1", 4, 1)
+        self.create_button("2", 4, 2)
+        self.create_button("3", 4, 3)
 
-        total = str(eval(expression))
+        self.create_button("1", 5, 1)
+        self.create_button("2", 5, 2)
+        self.create_button("3", 5, 3)
 
-        equation.set(total)
+        self.create_button("1", 6, 1)
+        self.create_button("2", 6, 2)
+        self.create_button("3", 6, 3, command=self.calculate)
 
-        # initialize the expression variable
-        # by empty string
-        expression = ""
+    def create_button(self, text, row, column, command=None):
+        button = tk.Button(self, text=text, command=command)
+        button.grid(row=row, column=column, padx=10, pady=10)
 
-    # if error occurs then except handles
-    except:
-            equation.set(" error ")
-            expression = ""
+    def calculate(self):
+        current = self.entry.get()
+        self.total.set(eval(current))
 
-def clear():
-    global expression
-    expression = ""
-    equation.set("")
-
-# Driver code
 if __name__ == "__main__":
-    # create a GUI window
-    gui = Tk()
-
-    # set the background color of the GUI window
-    gui.configure(background="black")
-
-    # set the titel of GUI window
-    gui.title("Simple Calculator")
-
-    # set the configuration of GUI window
-    gui.geometry("270x150")
-
-    # StringVar() is the variable class
-    # we create an instance of this class
-    equation = StringVar()
-
-    # create text entry box for showing expression
-    expression_field = Entry(gui, textvariable=equation)
-
-    # grid method is used for placing widgets at respective positions
-    expression_field.grid(columnspan=4, ipadx = 70)
-
-    # create a button and a place
-    button1 = Button(gui, text=' 1 ', fg='black', bg='white', 
-                            command=lambda: press(1), height=1, width=7)
-    button1.grid(row=2, column=0)
-
-
-    # start the GUI
-    gui.mainloop()
+    calculator = Calculator()
+    calculator.mainloop()
