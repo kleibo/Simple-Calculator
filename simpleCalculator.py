@@ -38,9 +38,9 @@ class Calculator(tk.Tk):
     
     def create_button(self, text, row, column, command=None):
         if text != "=" and text != "C":
-            button = tk.Button(self, text=text, command=lambda: self.button_press(text))
+            button = tk.Button(self, text=text, command=lambda: self.button_press(text), height=2, width=5)
         else:
-            button = tk.Button(self, text=text, command=command)
+            button = tk.Button(self, text=text, command=command, height=2, width=5)
         button.grid(row=row, column=column, padx=10, pady=10)
 
 
