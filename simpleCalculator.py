@@ -15,25 +15,24 @@ class Calculator(tk.Tk):
         self.create_button("2", 1, 2)
         self.create_button("3", 1, 3)
 
-        self.create_button("1", 2, 1)
-        self.create_button("2", 2, 2)
-        self.create_button("3", 2, 3)
+        self.create_button("4", 2, 1)
+        self.create_button("5", 2, 2)
+        self.create_button("6", 2, 3)
 
-        self.create_button("1", 3, 1)
-        self.create_button("2", 3, 2)
-        self.create_button("3", 3, 3)
+        self.create_button("7", 3, 1)
+        self.create_button("8", 3, 2)
+        self.create_button("9", 3, 3)
 
-        self.create_button("1", 4, 1)
-        self.create_button("2", 4, 2)
-        self.create_button("3", 4, 3)
+        self.create_button(".", 4, 1)
+        self.create_button("0", 4, 2)
+        self.create_button("C", 4, 3)
 
-        self.create_button("1", 5, 1)
-        self.create_button("2", 5, 2)
-        self.create_button("3", 5, 3)
-
-        self.create_button("1", 6, 1)
-        self.create_button("2", 6, 2)
-        self.create_button("3", 6, 3, command=self.calculate)
+        self.create_button("+", 5, 1)
+        self.create_button("-", 5, 2)
+        self.create_button("*", 5, 3)
+        self.create_button("/", 6, 1)
+        self.create_button("%", 6, 2)
+        self.create_button("=", 6, 3, command=self.calculate)
 
     def create_button(self, text, row, column, command=None):
         button = tk.Button(self, text=text, command=command)
