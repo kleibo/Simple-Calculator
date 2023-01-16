@@ -35,9 +35,21 @@ class Calculator(tk.Tk):
         self.create_button("%", 6, 2)
         self.create_button("=", 6, 3, command=self.calculate)
 
+    
     def create_button(self, text, row, column, command=None):
-        button = tk.Button(self, text=text, command=command)
+        button = tk.Button(self, text=text, command=lambda: self.button_press(text))
         button.grid(row=row, column=column, padx=10, pady=10)
+
+
+    # Method takes argument passed from lambda function and appends it to current value of the entry widget
+    def button_press(self, number):
+        current = self.entry.get()
+        self.entry.delte(0, tk.END)
+        self.entry.insert(0, str(current) + str(number))
+
+    # Method clears entry when pressed
+    def button_clear(self):
+        self.entry.delete(0, tk.END)
 
     def calculate(self):
         current = self.entry.get()
