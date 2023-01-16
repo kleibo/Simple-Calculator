@@ -57,9 +57,13 @@ class Calculator(tk.Tk):
     def calculate(self):
         current = self.entry.get()
         try:
-            result = sympy.parse_expr(current).evalf()
-            self.entry.delete(0, tk.END)
-            self.entry.insert(0, "{:.10g}".format(result))
+            if '/0' in current:
+                self.entry.delete(0, tk.END)
+                self.entry.insert(0, "Error: Division by Zero")
+            else:
+                result = sympy.parse_expr(current).evalf()
+                self.entry.delete(0, tk.END)
+                self.entry.insert(0, "{:.10g}".format(result))
         except (ValueError, SyntaxError):
             self.entry.delete(0, tk.END)
             self.entry.insert(0, "Error")
